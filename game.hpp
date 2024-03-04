@@ -1,15 +1,14 @@
 #pragma once
-#include <raylib.h>
+#include "spaceship.hpp"
 
-class Spaceship{
-public:
-  Spaceship();
-  ~Spaceship();
+class Game {
+ public:
+  Game();
+  ~Game();
   void Draw();
-  void MoveLeft();
-  void MoveRight();
-  void FireLaser();
-private:
-  Texture2D image;
-  Vector2 position;
+  void Update();
+  void HandleInput();
+
+ private:
+  Spaceship spaceship;
 };
