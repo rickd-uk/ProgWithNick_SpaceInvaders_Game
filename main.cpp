@@ -11,9 +11,9 @@ int main(void) {
   SetTargetFPS(60);
 
   Game game;
-
   while (!WindowShouldClose()) {
     game.HandleInput();
+    game.Update();
 
     BeginDrawing();
     ClearBackground(grey);
@@ -24,3 +24,8 @@ int main(void) {
   }
   CloseWindow();
 }
+
+/* bi() {     gcc main.cpp spaceship.cpp game.cpp laser.cpp -o main -lraylib
+ -lstdc++ && ./main; }   */
+
+// https://www.youtube.com/watch?v=TGo3Oxdpr5o
