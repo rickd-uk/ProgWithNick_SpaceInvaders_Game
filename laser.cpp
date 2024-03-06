@@ -2,14 +2,15 @@
 
 #include <iostream>
 
-Laser::Laser(Vector2 position, int speed) {
-  this->position = position;
-  this->speed = speed;
-  active = true;
+Laser::Laser(Vector2 position, int speed): position(position), speed(speed), active(true) {
+
 }
 
+bool Laser::IsActive() const { return active; }
+
 void Laser::Draw() {
-  if (active) DrawRectangle(position.x, position.y, 4, 15, YELLOW);
+  if (active)
+    DrawRectangle(position.x, position.y, 4, 15, YELLOW);
 }
 
 void Laser::Update() {
@@ -18,7 +19,7 @@ void Laser::Update() {
   if (active) {
     if (position.y < 0 || position.y > GetScreenHeight()) {
       active = false;
-      std::cout << "Laster is inactive\n" << std::endl;
+      std::cout << "Laser is inactive\n" << std::endl;
     }
   }
 }
