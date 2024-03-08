@@ -14,9 +14,11 @@ class Game {
  private:
   void DeleteInactiveLasers();
   Spaceship spaceship;
-
+  
+  void MoveAliens();
   std::vector<Alien> CreateAliens();
   std::vector<Obstacle> CreateObstacles();
   std::vector<Obstacle> obstacles;
   std::vector<Alien> aliens;
+  int aliensDirection;
 };

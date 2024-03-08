@@ -3,9 +3,10 @@
 Game::Game() {
   obstacles = CreateObstacles();
   aliens = CreateAliens();
+  aliensDirection = 1;
 }
 
-Game::~Game() {}
+Game::~Game() { Alien::UnloadImages(); }
 
 void Game::Update() {
   for (auto &laser : spaceship.lasers) {
@@ -13,6 +14,7 @@ void Game::Update() {
   }
   DeleteInactiveLasers();
   // std::cout << "Lasers Size: " << spaceship.lasers.size() << std::endl;
+  MoveAliens();
 }
 
 void Game::Draw() {
@@ -80,5 +82,11 @@ std::vector<Alien> Game::CreateAliens() {
       aliens.push_back(Alien(alienType, {x, y}));
     }
   }
-    return aliens;
+  return aliens;
+}
+
+void Game::MoveAliens() {
+  for (auto &alien : aliens) {
+    alien.Update(aliensDirection);
   }
+}

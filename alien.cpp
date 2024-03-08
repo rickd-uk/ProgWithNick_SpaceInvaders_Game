@@ -28,3 +28,13 @@ Alien::Alien(int type, Vector2 position) {
 void Alien::Draw() { DrawTextureV(alienImages[type - 1], position, WHITE); }
 
 int Alien::GetType() { return type; }
+
+void Alien::UnloadImages() {
+  for (int i = 0; i < 4; i++) {
+    UnloadTexture(alienImages[i]);
+  }
+}
+
+void Alien::Update(int direction) {
+  position.x += direction; 
+}
