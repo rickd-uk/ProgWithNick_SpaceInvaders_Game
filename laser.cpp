@@ -2,9 +2,8 @@
 
 #include <iostream>
 
-Laser::Laser(Vector2 position, int speed): position(position), speed(speed), active(true) {
-
-}
+Laser::Laser(Vector2 position, int speed)
+    : position(position), speed(speed), active(true) {}
 
 bool Laser::IsActive() const { return active; }
 
@@ -19,7 +18,7 @@ void Laser::Update() {
   if (active) {
     if (position.y < 0 || position.y > GetScreenHeight()) {
       active = false;
-      std::cout << "Laser is inactive\n" << std::endl;
+      // std::cout << "Laser is inactive\n" << std::endl;
     }
   }
 }

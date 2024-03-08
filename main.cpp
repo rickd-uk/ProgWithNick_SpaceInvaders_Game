@@ -1,6 +1,7 @@
 #include <raylib.h>
 
 #include "game.hpp"
+#include "obstacle.hpp"
 
 int main(void) {
   Color grey = {29, 29, 27, 255};
@@ -11,6 +12,7 @@ int main(void) {
   SetTargetFPS(60);
 
   Game game;
+
   while (!WindowShouldClose()) {
     game.HandleInput();
     game.Update();
@@ -24,6 +26,8 @@ int main(void) {
   }
   CloseWindow();
 }
+
+// bi() {     gcc *.cpp -o main -lstdc++ -lraylib && ./main; }
 
 /* bi() {     gcc main.cpp spaceship.cpp game.cpp laser.cpp -o main -lraylib
  -lstdc++ && ./main; }   */
