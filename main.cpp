@@ -1,7 +1,7 @@
 #include <raylib.h>
 
+#include "alien.hpp"
 #include "game.hpp"
-#include "obstacle.hpp"
 
 int main(void) {
   Color grey = {29, 29, 27, 255};
@@ -12,7 +12,7 @@ int main(void) {
   SetTargetFPS(60);
 
   Game game;
-
+  Alien alien = Alien(3, {200, 200});
   while (!WindowShouldClose()) {
     game.HandleInput();
     game.Update();
@@ -21,6 +21,7 @@ int main(void) {
     ClearBackground(grey);
 
     game.Draw();
+    alien.Draw();
 
     EndDrawing();
   }

@@ -1,5 +1,4 @@
 #include "game.hpp"
-#include <iostream>
 
 Game::Game() { obstacles = CreateObstacles(); }
 
@@ -18,7 +17,7 @@ void Game::Draw() {
   for (auto &laser : spaceship.lasers) {
     laser.Draw();
   }
-  for (auto& obstacle: obstacles) {
+  for (auto &obstacle : obstacles) {
     obstacle.Draw();
   }
 }
