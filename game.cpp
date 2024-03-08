@@ -67,7 +67,6 @@ std::vector<Alien> Game::CreateAliens() {
 
   for (int row = 0; row < 5; row++) {
     for (int col = 0; col < 11; col++) {
-
       int alienType;
       if (row == 0) {
         alienType = 3;
@@ -87,6 +86,13 @@ std::vector<Alien> Game::CreateAliens() {
 
 void Game::MoveAliens() {
   for (auto &alien : aliens) {
+    if (alien.position.x + alien.alienImages[alien.type - 1].width >
+        GetScreenWidth()) {
+      aliensDirection = -1;
+    }
+    if (alien.position.x < 0) {
+      aliensDirection = 1;
+    }
     alien.Update(aliensDirection);
   }
 }
