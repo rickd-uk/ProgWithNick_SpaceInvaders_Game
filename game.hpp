@@ -17,9 +17,13 @@ class Game {
 
   void MoveAliens();
   void MoveAliensDown(int distance);
+  void AlienShootLaser();
   std::vector<Alien> CreateAliens();
   std::vector<Obstacle> CreateObstacles();
   std::vector<Obstacle> obstacles;
   std::vector<Alien> aliens;
   int aliensDirection;
+  std::vector<Laser> alienLasers;
+  constexpr static float alienLaserShootInterval = 0.35;
+  float timeLastAlienFired;
 };
