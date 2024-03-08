@@ -1,7 +1,7 @@
 #pragma once
-#include "spaceship.hpp"
-#include "obstacle.hpp"
 #include "alien.hpp"
+#include "obstacle.hpp"
+#include "spaceship.hpp"
 
 class Game {
  public:
@@ -14,8 +14,9 @@ class Game {
  private:
   void DeleteInactiveLasers();
   Spaceship spaceship;
-  
+
   void MoveAliens();
+  void MoveAliensDown(int distance);
   std::vector<Alien> CreateAliens();
   std::vector<Obstacle> CreateObstacles();
   std::vector<Obstacle> obstacles;

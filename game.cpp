@@ -89,10 +89,18 @@ void Game::MoveAliens() {
     if (alien.position.x + alien.alienImages[alien.type - 1].width >
         GetScreenWidth()) {
       aliensDirection = -1;
+      MoveAliensDown(4);
     }
     if (alien.position.x < 0) {
       aliensDirection = 1;
+      MoveAliensDown(4);
     }
     alien.Update(aliensDirection);
+  }
+}
+
+void Game::MoveAliensDown(int distance) {
+  for (auto &alien : aliens) {
+    alien.position.y += distance;
   }
 }
