@@ -1,5 +1,7 @@
 #include "game.hpp"
 
+#include <iostream>
+
 Game::Game() {
   obstacles = CreateObstacles();
   aliens = CreateAliens();
@@ -177,6 +179,28 @@ void Game::CheckForCollisions() {
     if (CheckCollisionRecs(mysteryship.getRect(), laser.getRect())) {
       mysteryship.alive = false;
       laser.SetActive(false);
+    }
+  }
+
+  // Alien lasers
+
+  for (auto &laser : alienLasers) {
+    if (CheckCollisionRecs(laser.getRect(), spaceship.getRect())) {
+      laser.SetActive(false);
+      std::cout << "Player lost a life" << std::endl;
+    }
+
+    // TODO: Duplicated code from above - must refactor
+    for (auto &obstacle : obstacles) {
+      auto it = obstacle.blocks.begin();
+      while (it != obstacle.blocks.end()) {
+        if (CheckCollisionRecs(it->getRect(), laser.getRect())) {
+          it = obstacle.blocks.erase(it);
+          laser.SetActive(false);
+        } else {
+          ++it;
+        }
+      }
     }
   }
 }
