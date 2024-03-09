@@ -203,4 +203,19 @@ void Game::CheckForCollisions() {
       }
     }
   }
+
+  // Alien collision with obstacle
+  for (auto &alien : aliens) {
+    for (auto &obstacle : obstacles) {
+      auto it = obstacle.blocks.begin();
+      while (it != obstacle.blocks.end()) {
+        if (CheckCollisionRecs(it->getRect(), alien.getRect())) {
+          it = obstacle.blocks.erase(it);
+
+        } else {
+          it++;
+        }
+      }
+    }
+  }
 }
