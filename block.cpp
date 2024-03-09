@@ -5,3 +5,13 @@ Block::Block(Vector2 position) { this->position = position; }
 void Block::Draw() {
   DrawRectangle(position.x, position.y, 3, 3, {243, 216, 63, 255});
 }
+
+Rectangle Block::getRect() {
+  Rectangle rec;
+  rec.x = position.x;
+  rec.y = position.y;
+  rec.width = 3;
+  rec.height = 3;
+
+  return rec;
+}
