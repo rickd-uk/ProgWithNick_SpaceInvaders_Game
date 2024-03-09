@@ -29,4 +29,7 @@ class Game {
   int aliensDirection;
   float timeLastAlienFired;
   void DeleteInactiveLasers();
+
+  float mysteryShipSpawnInterval;
+  float timeLastShipSpawn;
 };
