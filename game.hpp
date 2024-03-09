@@ -1,5 +1,6 @@
 #pragma once
 #include "alien.hpp"
+#include "mysteryship.hpp"
 #include "obstacle.hpp"
 #include "spaceship.hpp"
 
@@ -12,8 +13,8 @@ class Game {
   void HandleInput();
 
  private:
-  void DeleteInactiveLasers();
   Spaceship spaceship;
+  MysteryShip mysteryship;
 
   void MoveAliens();
   void MoveAliensDown(int distance);
@@ -22,8 +23,10 @@ class Game {
   std::vector<Obstacle> CreateObstacles();
   std::vector<Obstacle> obstacles;
   std::vector<Alien> aliens;
-  int aliensDirection;
   std::vector<Laser> alienLasers;
+
   constexpr static float alienLaserShootInterval = 0.35;
+  int aliensDirection;
   float timeLastAlienFired;
+  void DeleteInactiveLasers();
 };
