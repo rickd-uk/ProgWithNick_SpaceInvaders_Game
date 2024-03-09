@@ -173,5 +173,10 @@ void Game::CheckForCollisions() {
         }
       }
     }
+
+    if (CheckCollisionRecs(mysteryship.getRect(), laser.getRect())) {
+      mysteryship.alive = false;
+      laser.SetActive(false);
+    }
   }
 }
