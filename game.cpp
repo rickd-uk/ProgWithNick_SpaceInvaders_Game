@@ -8,6 +8,8 @@ Game::Game() { InitGame(); }
 
 Game::~Game() { Alien::UnloadImages(); }
 
+int Game::GetLives() const { return lives; }
+
 void Game::Update() {
   if (running) {
     double currentTime = GetTime();

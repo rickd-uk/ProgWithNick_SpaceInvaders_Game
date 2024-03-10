@@ -11,6 +11,8 @@ class Game {
   void Draw();
   void Update();
   void HandleInput();
+  int GetLives() const;
+
   bool running;
 
  private:
