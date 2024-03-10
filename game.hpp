@@ -12,6 +12,8 @@ class Game {
   void Update();
   void HandleInput();
   int GetLives() const;
+  int GetScore() const;
+  int GetHighScore() const;
 
   bool running;
 
@@ -26,6 +28,9 @@ class Game {
   void Reset();
   void InitGame();
   void DeleteInactiveLasers();
+  void CheckForHighScore();
+  void SaveHighScoreToFile(int highScore);
+  int LoadHighScoreFromFile();
 
   Spaceship spaceship;
   std::vector<Alien> CreateAliens();
@@ -41,4 +46,6 @@ class Game {
   float mysteryShipSpawnInterval;
   float timeLastShipSpawn;
   int lives;
+  int score;
+  int highScore;
 };

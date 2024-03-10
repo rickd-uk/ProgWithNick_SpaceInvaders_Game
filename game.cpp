@@ -1,5 +1,6 @@
 #include "game.hpp"
 
+#include <fstream>
 #include <iostream>
 
 #include "spaceship.hpp"
@@ -9,6 +10,10 @@ Game::Game() { InitGame(); }
 Game::~Game() { Alien::UnloadImages(); }
 
 int Game::GetLives() const { return lives; }
+
+int Game::GetScore() const { return score; }
+
+int Game::GetHighScore() const { return highScore; }
 
 void Game::Update() {
   if (running) {
@@ -163,7 +168,18 @@ void Game::CheckForCollisions() {
   for (auto &laser : spaceship.lasers) {
     auto it = aliens.begin();
     while (it != aliens.end()) {
+      // Check if player hits an alien
       if (CheckCollisionRecs(it->getRect(), laser.getRect())) {
+	if (it->type == 1) {
+	  score += 100;
+	} else if (it->type == 2) {
+	  score += 150;
+	} else if (it->type == 3) {
+	  score += 200;
+	}
+
+	CheckForHighScore();
+
 	it = aliens.erase(it);
 	laser.SetActive(false);
       } else {
@@ -183,7 +199,11 @@ void Game::CheckForCollisions() {
       }
     }
 
+    // Check if player hit mysteryship
     if (CheckCollisionRecs(mysteryship.getRect(), laser.getRect())) {
+      score += 500;
+      CheckForHighScore();
+
       mysteryship.alive = false;
       laser.SetActive(false);
     }
@@ -242,7 +262,40 @@ void Game::InitGame() {
   mysteryShipSpawnInterval = GetRandomValue(10, 20);
 
   running = true;
+  score = 0;
+  highScore = LoadHighScoreFromFile();
   lives = 3;
+}
+
+void Game::CheckForHighScore() {
+  if (score > highScore) {
+    highScore = score;
+    SaveHighScoreToFile(highScore);
+  }
+}
+
+void Game::SaveHighScoreToFile(int highScore) {
+  std::ofstream highScoreFile("highscore.txt");
+
+  if (highScoreFile.is_open()) {
+    highScoreFile << highScore;
+    highScoreFile.close();
+  } else {
+  std:
+    std::cerr << "Failed to save highScore to file!" << std::endl;
+  }
+}
+
+int Game::LoadHighScoreFromFile() {
+  int loadedHighScore = 0;
+  std::ifstream highScoreFile("highscore.txt");
+  if (highScoreFile.is_open()) {
+    highScoreFile >> loadedHighScore;
+    highScoreFile.close();
+  } else {
+    std::cerr << "Failed to load highScoreFile from file!" << std::endl;
+  }
+  return loadedHighScore;
 }
 
 void Game::Reset() {
