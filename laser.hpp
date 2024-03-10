@@ -16,4 +16,6 @@ class Laser {
   Vector2 position;
   int speed;
   bool active;
+  constexpr static int width = 4;
+  constexpr static int height = 15;
 };
