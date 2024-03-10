@@ -14,7 +14,6 @@ class Game {
   bool running;
 
  private:
-  Spaceship spaceship;
   MysteryShip mysteryship;
 
   void MoveAliens();
@@ -22,7 +21,10 @@ class Game {
   void AlienShootLaser();
   void CheckForCollisions();
   void GameOver();
+  void Reset();
+  void InitGame();
 
+  Spaceship spaceship;
   std::vector<Alien> CreateAliens();
   std::vector<Obstacle> CreateObstacles();
   std::vector<Obstacle> obstacles;

@@ -2,17 +2,9 @@
 
 #include <iostream>
 
-Game::Game() {
-  obstacles = CreateObstacles();
-  aliens = CreateAliens();
-  aliensDirection = 1;
-  timeLastAlienFired = 0.0f;
-  timeLastShipSpawn = 0.0;
-  mysteryShipSpawnInterval = GetRandomValue(10, 20);
+#include "spaceship.hpp"
 
-  running = true;
-  lives = 3;
-}
+Game::Game() { InitGame(); }
 
 Game::~Game() { Alien::UnloadImages(); }
 
@@ -39,6 +31,11 @@ void Game::Update() {
     mysteryship.Update();
 
     CheckForCollisions();
+  } else {
+    if (IsKeyDown(KEY_ENTER)) {
+      Reset();
+      InitGame();
+    }
   }
 }
 
@@ -232,3 +229,23 @@ void Game::CheckForCollisions() {
 }
 
 void Game::GameOver() { running = false; }
+
+void Game::InitGame() {
+  obstacles = CreateObstacles();
+  aliens = CreateAliens();
+  aliensDirection = 1;
+  timeLastAlienFired = 0.0f;
+  timeLastShipSpawn = 0.0;
+  mysteryShipSpawnInterval = GetRandomValue(10, 20);
+
+  running = true;
+  lives = 3;
+}
+
+void Game::Reset() {
+  spaceship.Reset();
+  aliens.clear();
+  alienLasers.clear();
+  obstacles.clear();
+}
+

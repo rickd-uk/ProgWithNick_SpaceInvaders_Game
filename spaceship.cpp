@@ -35,3 +35,9 @@ void Spaceship::FireLaser() {
 Rectangle Spaceship::getRect() {
   return {position.x, position.y, float(image.width), float(image.height)};
 }
+
+void Spaceship::Reset() {
+  position.x = (float)(GetScreenWidth() - image.width) / 2;
+  position.y = (float)(GetScreenHeight() - image.height);
+  lasers.clear();
+}
