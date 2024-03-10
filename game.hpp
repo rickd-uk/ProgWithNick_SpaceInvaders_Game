@@ -23,6 +23,7 @@ class Game {
   void GameOver();
   void Reset();
   void InitGame();
+  void DeleteInactiveLasers();
 
   Spaceship spaceship;
   std::vector<Alien> CreateAliens();
@@ -32,10 +33,9 @@ class Game {
   std::vector<Laser> alienLasers;
 
   constexpr static float alienLaserShootInterval = 0.35;
+  constexpr static int obstacleyOffset = 200;
   int aliensDirection;
   float timeLastAlienFired;
-  void DeleteInactiveLasers();
-
   float mysteryShipSpawnInterval;
   float timeLastShipSpawn;
   int lives;

@@ -3,6 +3,7 @@
 
 #include <vector>
 
+#include "constants.hpp"
 #include "laser.hpp"
 
 class Spaceship {
@@ -22,4 +23,6 @@ class Spaceship {
   Texture2D image;
   Vector2 position;
   double lastFireTime;
+  constexpr static int offset = 100;
+  // constrain spacehip within borders left and right
 };

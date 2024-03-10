@@ -17,7 +17,8 @@ void Laser::Update() {
   position.y -= speed;
 
   if (active) {
-    if (position.y < 0 || position.y > GetScreenHeight()) {
+    if (position.y < G_SPACESHIP_OFFSET ||
+	position.y > GetScreenHeight() - G_SPACESHIP_OFFSET) {
       active = false;
       // std::cout << "Laser is inactive\n" << std::endl;
     }

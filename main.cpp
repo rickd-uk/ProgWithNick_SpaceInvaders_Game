@@ -4,10 +4,13 @@
 
 int main(void) {
   Color grey = {29, 29, 27, 255};
+  Color yellow = {243, 216, 63, 255};
+
+  int offset = 50;
   int width = 750;
   int height = 700;
 
-  InitWindow(width, height, "Space Invaders");
+  InitWindow(width + offset, height + (2 * offset), "Space Invaders");
   SetTargetFPS(60);
 
   Game game;
@@ -17,7 +20,9 @@ int main(void) {
 
     BeginDrawing();
     ClearBackground(grey);
-
+    // DrawRectangleRoundedLines({rectangle coords}, Roundness, No_of_segments =
+    // smoothness, Border Thickness, color)
+    DrawRectangleRoundedLines({10, 10, 780, 780}, 0.18f, 20, 2, yellow);
     game.Draw();
 
     EndDrawing();

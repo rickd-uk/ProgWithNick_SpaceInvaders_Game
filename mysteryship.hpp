@@ -1,6 +1,8 @@
 #pragma once
 #include <raylib.h>
 
+#include "constants.hpp"
+
 class MysteryShip {
  public:
   MysteryShip();

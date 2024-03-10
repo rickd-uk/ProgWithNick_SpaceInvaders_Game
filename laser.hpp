@@ -1,6 +1,8 @@
 #pragma once
 #include <raylib.h>
 
+#include "constants.hpp"
+
 class Laser {
  public:
   Laser(Vector2 position, int speed);
